@@ -15,8 +15,7 @@ func operation(u *User) {
 	fmt.Print("{1.Construction}\t{2.Attack}\t{3.Join a Team}")
 	fmt.Scanf("%d", choice)
 	switch choice {
-	case 1:
-		b := NewBuilding()
-		go b.constructSelf()
+		case 1:
+
 	}
 }
