@@ -1,16 +1,8 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
-
-type Building() interface {
-	isBuilding()
-}
-
-type Unit() interface {
-	isUnit()
+type Substance interface {
+	initSub()
+	vanished()
 }
 
 type Constructor interface {
@@ -25,23 +17,28 @@ type Armer interface {
 	attack()
 }
 
-// The things above is about the properties of a building.
 type TeamsBelong interface {
 	whichBelong() string
 }
 
 type Moveable interface {
-	movement()
+	move()
 }
 
-type Substance interface {
-	setBody()
+type Building interface {
+	Substance
 }
 
-func NewBuilding(string itsName) Building {
-
+type Unit interface {
+	Substance
 }
 
-func NewUnit(string itsName) Unit {
+func NewBuilding(itsName string) (Building, error) {
+	var b Building
+	return b, nil
+}
 
+func NewUnit(itsName string) (Unit, error) {
+	var u Unit
+	return u, nil
 }
