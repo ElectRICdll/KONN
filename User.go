@@ -1,5 +1,11 @@
 package main
 
+import (
+	"bufio"
+	"encoding/json"
+	"os"
+)
+
 /*
 About a integration of User
 Including:
@@ -21,6 +27,22 @@ type User struct {
 func NewUser(name string, color string) *User {
 	u := &User{name, color, 0, ""}
 	return u
+}
+
+func Login() User {
+	var res []byte
+	var userData User
+	
+	userFile, err := os.Open("user.json")
+	if err != nil {
+		panic(nil) // TODO:
+	}
+	defer userFile.Close()
+	inputReader := bufio.NewReader(userFile)
+	inputReader.Read(res)
+
+	json.Unmarshal(res, &userData)
+	return userData
 }
 
 func (u *User) String() string {

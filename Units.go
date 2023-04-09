@@ -14,12 +14,16 @@ type Man struct {
 	belongsTo string
 }
 
-func (self *Man) initSub(userName string) {
-	self.health = 50
-	self.damage = 5
-	self.belongsTo = userName
+func (u *Man) String() string {
+	return ""
 }
 
-func (self *Man) attack(oppo *Substance) {
-	fmt.Printf("Damage: %d! Attack: from %s", self.damage, reflect.TypeOf(self))
+func (u *Man) initSub(userName string) {
+	u.health = 50
+	u.damage = 5
+	u.belongsTo = userName
+}
+
+func (u *Man) attack(oppo *Substance) {
+	fmt.Printf("Damage: %d! Attack: from %s", u.damage, reflect.TypeOf(u))
 }

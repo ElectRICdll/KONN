@@ -11,13 +11,13 @@ type MainController struct {
 	belongsTo string
 }
 
-func (self *MainController) initSub(userName string) {
-	self.health = 1000
-	self.belongsTo = userName
+func (b *MainController) initSub(userName string) {
+	b.health = 1000
+	b.belongsTo = userName
 }
 
-// TODO: more fix
-func (self *MainController) construct(obj Substance) (Substance, error) {
+// TODO: more fix 
+func (b *MainController) construct(obj Substance) (Substance, error) {
 	fmt.Println("Constructing, it will take times...\n")
 	defer fmt.Println("Construction completed.")
 	if _, ok := obj.(Unit); ok {
@@ -30,6 +30,6 @@ func (self *MainController) construct(obj Substance) (Substance, error) {
 	return obj, nil
 }
 
-func (self *MainController) produce() {
-
+func (b *MainController) produce() {
+	
 }

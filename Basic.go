@@ -10,7 +10,7 @@ type Constructor interface {
 }
 
 type Producer interface {
-	product()
+	produce()
 }
 
 type Armer interface {
