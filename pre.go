@@ -40,6 +40,10 @@ func menu() {
 	switch cho := func(buf *bufio.Reader) string {defer exec.Command("cls");  res, _ := buf.ReadString('\n'); return res[:1]} (buf); {
 		case cho == "1":
 			Login()
+		case cho == "2":
+			// Settings()
+		case cho == "3":
+			return
 	}
 	// TODO: menu build
 }
