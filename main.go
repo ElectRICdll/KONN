@@ -1,5 +1,9 @@
 package main
 
+import (
+	"konn/pre"
+)
+
 func main() {
-	menu()
+	pre.Menu()
 }
