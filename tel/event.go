@@ -77,6 +77,42 @@ type InGameEvent struct {
 	eventMsg  string
 }
 
+type AttackEvent struct {
+	*InGameEvent
+}
+
+type ContactEvent struct {
+	*InGameEvent
+}
+
+type ConstructEvent struct {
+	*InGameEvent
+}
+
+type DiseaseEvent struct {
+	*InGameEvent
+}
+
+type ExposeEvent struct {
+	*InGameEvent
+}
+
+type MovementEvent struct {
+	*InGameEvent
+}
+
+type SetStatusEvent struct {
+	*InGameEvent
+}
+
+type SetWeatherEvent struct {
+	*InGameEvent
+} // Beta.
+
+type UnitAddEvent struct {
+	*InGameEvent
+}
+
 type ChatEvent struct {
 	Event
 	eventName string
@@ -89,3 +125,25 @@ func (e *ChatEvent) registry(msg string) {
 	e.eventMsg = msg
 	e.moment = time.Now() // TODO: unpack time
 }
+
+type GlobalChatEvent struct {
+	*ChatEvent
+}
+
+type PersonalChatEvent struct {
+	*ChatEvent
+}
+
+type TeamInvitationEvent struct {
+	*ChatEvent
+}
+
+type TeamChatEvent struct {
+	*ChatEvent
+} 
+
+
+
+
+
+
