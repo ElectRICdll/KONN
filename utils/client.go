@@ -12,7 +12,7 @@ func Commiter(eb *tel.EventBag) {
 	if err != nil {
 		fmt.Printf("Bag Sending failed: %v\n", err)
 	}
-	defer 
+	defer conn.Close()
 	conn.Write([]byte(eb.String()))
 }
 

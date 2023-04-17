@@ -1,8 +1,7 @@
 package tel
 
 import (
-	"fmt"
-	"konn/info"
+	"konn/constants"
 	"reflect"
 	"strings"
 )
@@ -10,18 +9,18 @@ import (
 // TODO:
 type EventBag struct {
 	eventType reflect.Type
-	eventBody Event
+	eventBody string
 }
 
 func (eb *EventBag) String() string {
-	return fmt.Sprintln("<EVENTBAG>" + info.THENAME + "\n" + 
-						"<VERSION>" + info.VERSION + "\n" + 
-						"<TYPE>" + strings.Split(eb.eventType.String(), ".")[1] + "\n" + 
-						"<BODY>" + eb.eventToSend() + "<BODYEND>")
+	return "<EVENTBAG>" + constants.THENAME + "\n" + 
+		"<VERSION>" + constants.VERSION + "\n" + 
+		"<TYPE>" + strings.Split(eb.eventType.String(), ".")[1] + "\n" + 
+		"<BODY>" + eb.eventToSend() + "<BODYEND>"
 }
 
 func (eb *EventBag) eventToSend() string {
-	return eb.String()
+	return eb.eventBody
 }
 
 func decodeEventStr(estr string) (EventBag, error) {
@@ -30,12 +29,12 @@ func decodeEventStr(estr string) (EventBag, error) {
 	return res, nil
 }
 
-func decodeEvent(eb EventBag) *Event {
-	event := eb.eventBody
-	return &event
-}
+// func DecodeEvent(eb EventBag) *Event {
+// 	e := &basicEvent{}
+// 	return e
+// }
 
-func encodeEvent(e Event) *EventBag {
-	eventbag := &EventBag{reflect.TypeOf(e), e}
+func EncodeEvent(e Event) *EventBag {
+	eventbag := &EventBag{reflect.TypeOf(e), e.String()}
 	return eventbag
 }

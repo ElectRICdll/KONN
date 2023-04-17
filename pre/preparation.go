@@ -3,12 +3,14 @@ package pre
 import (
 	"bufio"
 	"fmt"
-	"konn/info"
+	"konn/constants"
 	game "konn/ingame"
 	"os"
 	"os/exec"
 	"time"
 )
+
+// TODO: tui!!!
 
 type LocalData struct {
 	user map[string]*game.User
@@ -32,7 +34,7 @@ func Menu() {
 	fmt.Println("Done.")
 
 	time.Sleep(1 * 1e9)
-	fmt.Println("KONN. V" + info.VERSION)
+	fmt.Println("KONN. V" + constants.VERSION)
 	fmt.Println("Menu")
 	fmt.Println("1.Online")
 	fmt.Println("2.Settings")
