@@ -2,15 +2,15 @@ package game
 
 type Substance interface {
 	initSub()
-	vanished()
+	Vanished()
 }
 
 type Constructor interface {
-	construct()
+	Construct()
 }
 
 type Producer interface {
-	produce()
+	Produce()
 }
 
 type Armer interface {
@@ -18,11 +18,11 @@ type Armer interface {
 }
 
 type TeamsBelong interface {
-	whichBelong() string
+	WhichBelong() string
 }
 
 type Moveable interface {
-	move()
+	Movement()
 }
 
 type Building interface {
@@ -33,12 +33,12 @@ type Unit interface {
 	Substance
 }
 
-func NewBuilding(itsName string) (Building, error) {
+func NewBuilding(itsName string, pos Position) (Building, error) {
 	var b Building
 	return b, nil
 }
 
-func NewUnit(itsName string) (Unit, error) {
+func NewUnit(itsName string, pos Position) (Unit, error) {
 	var u Unit
 	return u, nil
 }
