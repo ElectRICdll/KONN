@@ -14,7 +14,7 @@ type Producer interface {
 }
 
 type Armer interface {
-	attack()
+	Attack()
 }
 
 type TeamsBelong interface {

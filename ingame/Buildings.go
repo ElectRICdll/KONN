@@ -22,13 +22,13 @@ func (b *FrontierBase) initSub(userName string) {
 func (b *FrontierBase) construct(obj Substance) (Substance, error) {
 	fmt.Println("Constructing, it will take times...\n")
 	defer fmt.Println("Construction completed.")
-	if _, ok := obj.(Unit); ok {
-		obj, _ = NewUnit("nil") // error handler needed.
-	} else if _, ok := obj.(Building); ok {
-		obj, _ = NewBuilding("nil") // error handler needed.
-	} else {
-		// error generater needed.
-	}
+	// if _, ok := obj.(Unit); ok {
+	// 	obj, _ = NewUnit("nil") // error handler needed.
+	// } else if _, ok := obj.(Building); ok {
+	// 	obj, _ = NewBuilding("nil") // error handler needed.
+	// } else {
+	// 	// error generater needed.
+	// }
 	return obj, nil
 }
 
@@ -36,7 +36,7 @@ func (b *FrontierBase) produce() {
 	fmt.Println("Training...")
 }
 
-func (b *FrontireBase) Vanished() {
+func (b *FrontierBase) Vanished() {
 
 }
 

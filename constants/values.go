@@ -1,6 +1,6 @@
 package constants
 
-const VERSION string = "0.1"
+const VERSION string = "b0.1"
 
 // current version set
 const HOST string = ""
