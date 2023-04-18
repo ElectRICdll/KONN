@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"konn/pre"
 	"konn/tel"
 	"konn/utils"
 )
@@ -14,7 +15,8 @@ func sendEvent(e tel.Event) {
 
 
 func main() {
-	e := &tel.ServiceEvent{}
-	tel.NewEvent(e, "New User: electric\nMes: Hello world!\n<END>")
-	sendEvent(e)
+	// e := &tel.ServiceEvent{}
+	// tel.NewEvent(e, "New User: electric\nMes: Hello world!\n<END>")
+	// sendEvent(e)
+	pre.Menu()
 }

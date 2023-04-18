@@ -1,13 +1,14 @@
 package pre
 
 import (
-	"bufio"
 	"fmt"
 	"konn/constants"
 	game "konn/ingame"
-	"os"
-	"os/exec"
+	"konn/utils"
 	"time"
+
+	ui "github.com/gizak/termui/v3"
+	"github.com/gizak/termui/v3/widgets"
 )
 
 // TODO: tui!!!
@@ -18,38 +19,87 @@ type LocalData struct {
 }
 
 func initialize() {
-	fmt.Println("Initializing...\n")
-	defer fmt.Println("Complete.")
+	fmt.Print("Initializing...")
+	defer fmt.Println("Done.")
 	bootBag := &LocalData{map[string]*game.User{}, map[string]*game.Team{}}
-
-	//
+	
+	// TODO: undetermined code
 	bootBag.user["electric"] = game.NewUser("electric", "red")
 	//
 }
 
 func Menu() {
-	buf := bufio.NewReader(os.Stdin)
-	fmt.Print("waiting for initialization...")
+	utils.SetTerminalTitle("Meow!")
 	initialize()
-	fmt.Println("Done.")
+	time.Sleep(2 * 1e9)
+	ui.Init()
+	
+	menu := utils.SetMainMenu(
+		"KONN. Version:" + constants.VERSION,
+		[]string{"1.Online","2.Library","3.Settings","4.Exit",},
+	)
+	menu.SelectedRowStyle = ui.NewStyle(ui.ColorYellow)
 
-	time.Sleep(1 * 1e9)
-	fmt.Println("KONN. V" + constants.VERSION)
-	fmt.Println("Menu")
-	fmt.Println("1.Online")
-	fmt.Println("2.Settings")
-	fmt.Println("3.Exit")
-	fmt.Print("Select: ")
-	// @magical
-	switch cho := func(buf *bufio.Reader) string {defer exec.Command("cls");  res, _ := buf.ReadString('\n'); return res[:1]} (buf); {
-		case cho == "1":
-			game.Login()
-		case cho == "2":
-			// Settings()
-		case cho == "3":
-			return
+	subMenu := []*widgets.List{
+		utils.SetSubMenu(
+			"Online Competitions",
+			[]string{"Connecting to online services..."}), 
+		utils.SetSubMenu(
+			"Library",
+			[]string{"Buildings", "Units", "Map", "Weather"}), 
+		utils.SetSubMenu("Settings",
+			[]string{"Draw Frames", "Server IP", "Server Port"}), 
 	}
-	// TODO: menu build
+	for i := 0; i < len(subMenu); i++ {
+		subMenu[i].SelectedRowStyle = ui.NewStyle(ui.ColorYellow)
+	}
+
+	switcher := utils.SetSwitcher("Menu", "SubMenu")
+
+
+	ui.Render(menu)
+	curSub := utils.SetSubMenu("", nil) 
+	renderSwitch := func() {
+		switch switcher.ActiveTabIndex {
+		case 0:
+			ui.Render(menu)
+		case 1:
+			ui.Render(menu, curSub)
+		}
+	}
+	controlSwitch := func() *widgets.List {
+		switch switcher.ActiveTabIndex {
+		case 0:
+			return menu
+		case 1:
+			return curSub
+		default:
+			return menu
+		}
+	}
+
+	uiEvents := ui.PollEvents()
+	for {
+		e := <-uiEvents
+		switch e.ID {
+		case "s", "<Down>":
+			control := controlSwitch()
+			control.ScrollDown()
+			// menu.ScrollDown() || curSub.ScrollDown()
+		case "w", "<Up>":
+			control := controlSwitch()
+			control.ScrollUp()
+		case "<Enter>":
+			switcher.FocusRight()
+			ui.Clear()
+			curSub = subMenu[menu.SelectedRow]
+			// renderSwitch()
+		case "<Escape>":
+			switcher.FocusLeft()
+			ui.Clear()
+		}
+		renderSwitch()
+	}
 }
 
 func ChatSys() {
