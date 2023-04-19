@@ -1,25 +1,28 @@
-package game
+package buildings
 
-import "fmt"
+import (
+	"fmt"
+	. "konn/ingame/basic"
+)
 
 type FrontierBase struct {
-	Substance
 	Building
+
+	Substance
 	Constructor
-	CList map[string]*Unit
 	Producer
-	health    int
-	armor     int
-	belongsTo string
 }
 
 func (b *FrontierBase) initSub(userName string) {
-	b.health = 1000
-	b.belongsTo = userName
+
 }
 
-// TODO: more fix 
-func (b *FrontierBase) construct(obj Substance) (Substance, error) {
+func (b *FrontierBase) Vanished() {
+
+}
+
+// TODO: more fix
+func (b *FrontierBase) Construct(obj Substance) {
 	fmt.Println("Constructing, it will take times...\n")
 	defer fmt.Println("Construction completed.")
 	// if _, ok := obj.(Unit); ok {
@@ -29,31 +32,26 @@ func (b *FrontierBase) construct(obj Substance) (Substance, error) {
 	// } else {
 	// 	// error generater needed.
 	// }
-	return obj, nil
 }
 
 func (b *FrontierBase) produce() {
 	fmt.Println("Training...")
 }
 
-func (b *FrontierBase) Vanished() {
 
-}
 
 type InfantryBase struct {
+	Building
+
 	Substance
 	Producer
-	
-	health    int
-	armor     int
-	belongsTo int
 }
 
 func (b *InfantryBase) initSub(username string) {
 
 }
 
-func (b *InfantryBase) produce() {
+func (b *InfantryBase) Produce() {
 
 }
 
@@ -62,10 +60,9 @@ func (b *InfantryBase) Vanished() {
 }
 
 type Radar struct {
+	Building
+
 	Substance
-	health    int
-	armor     int
-	belongsTo string
 }
 
 func (b *Radar) initSub(username string) {
