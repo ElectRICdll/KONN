@@ -10,7 +10,7 @@ import (
 func SetTerminalTitle(title string) {
 	kernel, _ := syscall.LoadLibrary("kernel32.dll")
 	sct, _ := syscall.GetProcAddress(kernel, "SetConsoleTitleW")
-	syscall.Syscall(sct, 1, uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(title))), 0, 0)
+	syscall.SyscallN(sct, 1, uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(title))), 0, 0)
 	syscall.FreeLibrary(kernel)
 }
 

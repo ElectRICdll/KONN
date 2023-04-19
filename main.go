@@ -5,6 +5,7 @@ import (
 	"konn/pre"
 	"konn/tel"
 	"konn/utils"
+	"os"
 )
 
 func sendEvent(e tel.Event) {
@@ -14,9 +15,12 @@ func sendEvent(e tel.Event) {
 }
 
 
-func main() {
-	// e := &tel.ServiceEvent{}
-	// tel.NewEvent(e, "New User: electric\nMes: Hello world!\n<END>")
-	// sendEvent(e)
-	pre.Menu()
+func main() { 
+	if len(os.Args) > 1 && os.Args[1] == "-test" {
+		e := &tel.NewUserEvent{}
+		tel.NewEvent(e, "New User: electric\nMes: This is a new User!\n<END>")
+		sendEvent(e)
+	} else {
+		pre.Menu()
+	}
 }

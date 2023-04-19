@@ -3,7 +3,7 @@ package pre
 import (
 	"fmt"
 	"konn/constants"
-	game "konn/ingame"
+	"konn/ingame/Players"
 	"konn/utils"
 	"time"
 
@@ -14,17 +14,17 @@ import (
 // TODO: tui!!!
 
 type LocalData struct {
-	user map[string]*game.User
-	team map[string]*game.Team
+	user map[string]*Players.User
+	team map[string]*Players.Team
 }
 
 func initialize() {
 	fmt.Print("Initializing...")
 	defer fmt.Println("Done.")
-	bootBag := &LocalData{map[string]*game.User{}, map[string]*game.Team{}}
+	bootBag := &LocalData{map[string]*Players.User{}, map[string]*Players.Team{}}
 	
 	// TODO: undetermined code
-	bootBag.user["electric"] = game.NewUser("electric", "red")
+	bootBag.user["electric"] = Players.NewUser("electric", "red")
 	//
 }
 
