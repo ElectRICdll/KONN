@@ -2,7 +2,6 @@ package events
 
 import (
 	"fmt"
-	. "konn/constants"
 	"konn/ingame/Players"
 	"reflect"
 )
@@ -17,7 +16,7 @@ func (e *NewTeamEvent) Registry(newTeam *Players.Team) {
 	e.NewTeam = newTeam
 	e.WHETHER_ME = true
 	msg := fmt.Sprintf("<new_team:%s>", e.NewTeam.Name)
-	NewEvent(e.Event, newTeam.Name, msg)
+	e.Event = NewEvent(newTeam.Name, reflect.TypeOf(e).String(), msg)
 }
 
 func (e *NewTeamEvent) String() string {

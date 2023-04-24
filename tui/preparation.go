@@ -5,7 +5,6 @@ import (
 	. "konn/constants"
 	"konn/ingame/Players"
 	"konn/utils"
-	"time"
 
 	ui "github.com/gizak/termui/v3"
 	"github.com/gizak/termui/v3/widgets"
@@ -23,7 +22,7 @@ func Initialize() {
 	defer fmt.Println("Done.")
 	bootBag := &LocalData{map[string]*Players.User{}, map[string]*Players.Team{}}
 	toServer := utils.ClientGenerate()
-	var RecvMessage string chan
+	var RecvMessage chan string  
 	go utils.Receiver(toServer, RecvMessage)
 	// undetermined code
 	bootBag.user["electric"] = Players.NewUser("electric", "red")

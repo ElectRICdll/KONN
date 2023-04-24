@@ -1,15 +1,19 @@
 package tel
 
-import "konn/ingame/Players"
+import (
+	"konn/ingame/Players"
+	"konn/ingame/basic"
+	. "konn/tel/events"
+)
 
-type ServiceEvents interface {
+type ServiceEvent interface {
 	Registry(*Players.Actor, ...int)
 	Receive(e *Event)
 	String() string
 }
 
 type GameEvent interface {
-	Registry(...*ingame.Substance)
+	Registry(...*basic.Substance)
 	Receive(e *Event)
 	String() string
 }

@@ -2,7 +2,6 @@ package events
 
 import (
 	"fmt"
-	. "konn/constants"
 	"konn/ingame/Players"
 	"reflect"
 )
@@ -17,7 +16,7 @@ func (e *UserExitEvent) Registry(curUser *Players.User) {
 	e.currentUser = curUser
 	e.WHETHER_ME = true
 	msg := fmt.Sprintf("<user:%s>", e.currentUser.Name)
-	NewEvent(e.Event, curUser.Name, msg)
+	e.Event = NewEvent(curUser.Name, reflect.TypeOf(e).String(), msg)
 }
 
 func (e *UserExitEvent) String() string {

@@ -35,9 +35,8 @@ type Event struct {
 	Message string
 }
 
-func NewEvent(e *Event, eventName string, msg string) {
-	e.Name = eventName
-	e.Message = msg
+func NewEvent(eventName string, eventType string, msg string) *Event {
+	return &Event{eventName, eventType, msg}
 }
 
 // func EventDecode(message string) {

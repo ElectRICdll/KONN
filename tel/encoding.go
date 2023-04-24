@@ -3,20 +3,18 @@ package tel
 import (
 	. "konn/constants"
 	. "konn/tel/events"
-	"reflect"
-	"strings"
 )
 
 // TODO:
 type EventBag struct {
-	eventType reflect.Type
+	eventType string
 	eventBody string
 }
 
 func (eb *EventBag) String() string {
-	return EVENTBAG + MODULE_NAME + br +
-		THE_VERSION + VERSION + br +
-		EVENTTYPE + strings.Split(eb.eventType, ".")[1] + br +
+	return EVENTBAG + MODULE_NAME + "\n" +
+		THE_VERSION + VERSION + "\n" +
+		EVENTTYPE + eb.eventType + "\n" +
 		BODY +
 		eb.eventToSend() +
 		BODYEND

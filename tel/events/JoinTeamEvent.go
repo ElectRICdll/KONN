@@ -2,7 +2,6 @@ package events
 
 import (
 	"fmt"
-	. "konn/constants"
 	"konn/ingame/Players"
 	"reflect"
 )
@@ -19,7 +18,7 @@ func (e *JoinTeamEvent) Registry(curUser *Players.User, des *Players.Team) {
 	e.Des = des
 	e.WHETHER_ME = true
 	msg := fmt.Sprintf("<team:%s>", des.Name)
-	NewEvent(e.Event, curUser.Name, msg)
+	e.Event = NewEvent(curUser.Name, reflect.TypeOf(e).String(), msg)
 }
 
 func (e *JoinTeamEvent) String() string {

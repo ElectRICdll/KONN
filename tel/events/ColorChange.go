@@ -2,7 +2,6 @@ package events
 
 import (
 	"fmt"
-	. "konn/constants"
 	"konn/ingame/Players"
 	"reflect"
 )
@@ -19,8 +18,8 @@ func (e *ColorChangeEvent) Registry(curUser *Players.User, colorChange ...int) {
 	e.before = colorChange[0]
 	e.after = colorChange[1]
 	e.WHETHER_ME = true
-	msg := fmt.Sprintf("<before:%s, after:%s>", reflect.TypeOf(e).String, colorChange[0], colorChange[1])
-	NewEvent(e.Event, curUser.Name, msg)
+	msg := fmt.Sprintf("<before:%s, after:%s>", reflect.TypeOf(e).String(), colorChange[0], colorChange[1])
+	e.Event = NewEvent(curUser.Name, reflect.TypeOf(e).String(), msg)
 }
 
 func (e *ColorChangeEvent) Receive(event *Event) {
