@@ -1,8 +1,8 @@
-package pre
+package tui
 
 import (
 	"fmt"
-	"konn/constants"
+	. "konn/constants"
 	"konn/ingame/Players"
 	"konn/utils"
 	"time"
@@ -18,37 +18,34 @@ type LocalData struct {
 	team map[string]*Players.Team
 }
 
-func initialize() {
+func Initialize() {
 	fmt.Print("Initializing...")
 	defer fmt.Println("Done.")
 	bootBag := &LocalData{map[string]*Players.User{}, map[string]*Players.Team{}}
-	
-	// TODO: undetermined code
+	toServer := utils.ClientGenerate()
+	var RecvMessage string chan
+	go utils.Receiver(toServer, RecvMessage)
+	// undetermined code
 	bootBag.user["electric"] = Players.NewUser("electric", "red")
 	//
 }
 
 func Menu() {
-	utils.SetTerminalTitle("Meow!")
-	initialize()
-	time.Sleep(2 * 1e9)
-	ui.Init()
-	
 	menu := utils.SetMainMenu(
-		"KONN. Version:" + constants.VERSION,
-		[]string{"1.Online","2.Library","3.Settings","4.Exit",},
+		"KONN. Version:"+VERSION,
+		[]string{"1.Online", "2.Library", "3.Settings", "4.Exit"},
 	)
 	menu.SelectedRowStyle = ui.NewStyle(ui.ColorYellow)
 
 	subMenu := []*widgets.List{
 		utils.SetSubMenu(
 			"Online Competitions",
-			[]string{"Connecting to online services..."}), 
+			[]string{"Connecting to online services..."}),
 		utils.SetSubMenu(
 			"Library",
-			[]string{"Buildings", "Units", "Map", "Weather"}), 
+			[]string{"Buildings", "Units", "Map", "Weather"}),
 		utils.SetSubMenu("Settings",
-			[]string{"Draw Frames", "Server IP", "Server Port"}), 
+			[]string{"Draw Frames", "Server IP:" + Host, "Server Port"}),
 	}
 	for i := 0; i < len(subMenu); i++ {
 		subMenu[i].SelectedRowStyle = ui.NewStyle(ui.ColorYellow)
@@ -56,9 +53,8 @@ func Menu() {
 
 	switcher := utils.SetSwitcher("Menu", "SubMenu")
 
-
 	ui.Render(menu)
-	curSub := utils.SetSubMenu("", nil) 
+	curSub := utils.SetSubMenu("", nil)
 	renderSwitch := func() {
 		switch switcher.ActiveTabIndex {
 		case 0:
@@ -89,19 +85,24 @@ func Menu() {
 		case "w", "<Up>":
 			control := controlSwitch()
 			control.ScrollUp()
-		case "<Enter>":
-			switcher.FocusRight()
-			ui.Clear()
-			curSub = subMenu[menu.SelectedRow]
-			// renderSwitch()
 		case "<Escape>":
 			switcher.FocusLeft()
 			ui.Clear()
+		case "<Enter>":
+			switcher.FocusRight()
+			ui.Clear()
+			if switcher.ActiveTabIndex == 0 {
+				curSub = subMenu[menu.SelectedRow]
+			} else if menu.SelectedRow != 2 {
+
+			} else {
+
+			}
 		}
 		renderSwitch()
 	}
 }
 
 func ChatSys() {
-	
+
 }
