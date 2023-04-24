@@ -1,26 +1,23 @@
 package main
 
 import (
-	"fmt"
-	"konn/pre"
 	"konn/tel"
+	"konn/tui"
 	"konn/utils"
 	"os"
+	"time"
 )
 
-func sendEvent(e tel.Event) {
-	eb := tel.EncodeEvent(e)
-	fmt.Println("Committing event.")
-	utils.Commiter(eb)
-}
-
-
-func main() { 
+func main() {
 	if len(os.Args) > 1 && os.Args[1] == "-test" {
-		e := &tel.NewUserEvent{}
-		tel.NewEvent(e, "New User: electric\nMes: This is a new User!\n<END>")
-		sendEvent(e)
+		var e tel.Event = &tel.InGameEvent{}
+		tel.NewEvent(e, tel.AttackEvent, "User: electric\nMes: AttackEvent at tangyuanzi! {Damage: 30}\n<END>")
+		utils.SendEvent(e)
 	} else {
-		pre.Menu()
+		utils.SetTerminalTitle("Meow!")
+		Initialize()
+		time.Sleep(2 * 1e9)
+		ui.Init()
+		tui.Menu()
 	}
 }

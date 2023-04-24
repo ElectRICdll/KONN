@@ -25,7 +25,6 @@ func SetMainMenu(title string, options []string, pos ...int) *widgets.List {
 	} else {
 		menu.SetRect(0, 0, 25, 10)
 	}
-	
 
 	return menu
 }
@@ -39,6 +38,8 @@ func SetSubMenu(title string, options []string, pos ...int) *widgets.List {
 
 	return menu
 }
+
+func SetBottomBar()
 
 func SetSwitcher(title ...string) *widgets.TabPane {
 	tabs := widgets.NewTabPane(title...)

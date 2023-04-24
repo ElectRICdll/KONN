@@ -1,7 +1,8 @@
 package tel
 
 import (
-	"konn/constants"
+	. "konn/constants"
+	. "konn/tel/events"
 	"reflect"
 	"strings"
 )
@@ -13,17 +14,19 @@ type EventBag struct {
 }
 
 func (eb *EventBag) String() string {
-	return "<EVENTBAG>" + constants.THENAME + "\n" + 
-		"<VERSION>" + constants.VERSION + "\n" + 
-		"<TYPE>" + strings.Split(eb.eventType.String(), ".")[1] + "\n" + 
-		"<BODY>" + eb.eventToSend() + "<BODYEND>"
+	return EVENTBAG + MODULE_NAME + br +
+		THE_VERSION + VERSION + br +
+		EVENTTYPE + strings.Split(eb.eventType, ".")[1] + br +
+		BODY +
+		eb.eventToSend() +
+		BODYEND
 }
 
 func (eb *EventBag) eventToSend() string {
 	return eb.eventBody
 }
 
-func decodeEventStr(estr string) (EventBag, error) {
+func decodeMessage(estr string) (EventBag, error) {
 	// TODO: !! should u handle this
 	var res EventBag
 	return res, nil
@@ -34,7 +37,6 @@ func decodeEventStr(estr string) (EventBag, error) {
 // 	return e
 // }
 
-func EncodeEvent(e Event) *EventBag {
-	eventbag := &EventBag{reflect.TypeOf(e), e.String()}
-	return eventbag
+func EncodeEvent(e *Event) *EventBag {
+	return &EventBag{e.Type, e.Message}
 }
