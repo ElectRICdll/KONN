@@ -36,5 +36,5 @@ func decodeMessage(estr string) (EventBag, error) {
 // }
 
 func EncodeEvent(e *Event) *EventBag {
-	return &EventBag{e.Type, e.Message}
+	return &EventBag{e.Name, e.Message}
 }

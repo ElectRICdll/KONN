@@ -7,7 +7,7 @@ import (
 )
 
 type UserLeftEvent struct {
-	*Event
+	Event
 	currentUser *Players.User
 	WHETHER_ME  bool
 }
@@ -16,9 +16,9 @@ func (e *UserLeftEvent) Registry(curUser *Players.User) {
 	e.currentUser = curUser  
 	e.WHETHER_ME = true
 	msg := fmt.Sprintf("<user:%s>", e.currentUser.Name)
-	e.Event = NewEvent(curUser.Name, reflect.TypeOf(e).String(), msg)
+	e.Event = *NewEvent(reflect.TypeOf(e).String(), msg)
 }
 
 func (e *UserLeftEvent) String() string {
-	return BEGIN + br + "EventName: " + reflect.TypeOf(e).String() + br + e.Message
+	return BEGIN + br + "EventName: " + e.Name + br + e.Message
 }

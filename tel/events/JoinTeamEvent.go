@@ -7,7 +7,7 @@ import (
 )
 
 type JoinTeamEvent struct {
-	*Event
+	Event
 	currentUser *Players.User
 	Des *Players.Team
 	WHETHER_ME  bool
@@ -18,9 +18,9 @@ func (e *JoinTeamEvent) Registry(curUser *Players.User, des *Players.Team) {
 	e.Des = des
 	e.WHETHER_ME = true
 	msg := fmt.Sprintf("<team:%s>", des.Name)
-	e.Event = NewEvent(curUser.Name, reflect.TypeOf(e).String(), msg)
+	e.Event = *NewEvent(reflect.TypeOf(e).String(), msg)
 }
 
 func (e *JoinTeamEvent) String() string {
-	return BEGIN + br + "EventName: " + reflect.TypeOf(e).String() + br + e.Event.Message
+	return BEGIN + br + "EventName: " + e.Name + br + e.Event.Message
 }

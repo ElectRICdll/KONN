@@ -31,12 +31,11 @@ const (
 
 type Event struct {
 	Name    string
-	Type    string
 	Message string
 }
 
-func NewEvent(eventName string, eventType string, msg string) *Event {
-	return &Event{eventName, eventType, msg}
+func NewEvent(eventName string, msg string) *Event {
+	return &Event{eventName, msg}
 }
 
 // func EventDecode(message string) {

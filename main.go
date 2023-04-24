@@ -1,21 +1,24 @@
 package main
 
 import (
-	"konn/tel"
+	"konn/ingame/Players"
+	"konn/tel/events"
 	"konn/tui"
 	"konn/utils"
 	"os"
 	"time"
+
+	ui "github.com/gizak/termui/v3"
 )
 
 func main() {
 	if len(os.Args) > 1 && os.Args[1] == "-test" {
-		var e tel.Event = &tel.InGameEvent{}
-		tel.NewEvent(e, tel.AttackEvent, "User: electric\nMes: AttackEvent at tangyuanzi! {Damage: 30}\n<END>")
-		utils.SendEvent(e)
+		e := &events.ColorChangeEvent{}
+		e.Registry(Players.NewUser("ElectRIC_dll", "Red"), 0, 1)
+		utils.SendEvent(&e.Event, utils.ClientGenerate())
 	} else {
 		utils.SetTerminalTitle("Meow!")
-		Initialize()
+		tui.Initialize()
 		time.Sleep(2 * 1e9)
 		ui.Init()
 		tui.Menu()
