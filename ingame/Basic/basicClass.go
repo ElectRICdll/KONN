@@ -2,6 +2,8 @@ package basic
 
 type Substantive interface {
 	initSub()
+	ID() int
+	// Name()
 	Vanished()
 }
 
@@ -42,9 +44,27 @@ func NewUnit(it Unit) {
 }
 
 type Substance struct {
-	Health    int
-	Armor     int
-	BelongsTo string
+	id         int
+	Health     int
+	Armor      int
+	Flexiblity int
+	BelongsTo  string
+}
+
+func IDGenerate() int {
+	return 0
+}
+
+func (u *Substance) initSub() {
+
+}
+
+func (u *Substance) ID() int {
+	return u.id
+}
+
+func (u *Substance) Vanished() {
+
 }
 
 type Arming struct {

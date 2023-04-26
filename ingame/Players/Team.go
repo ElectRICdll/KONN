@@ -11,8 +11,8 @@ Including:
 */
 
 type Team struct {
-	name   string
-	member map[string]*User
+	Name   string
+	Member map[string]*User
 }
 
 // TODO: map initialization
@@ -21,22 +21,26 @@ func NewTeam(teamName string) *Team {
 	return t
 }
 
+func (t *Team) getActor() string {
+	return t.String()
+}
+
 func (t *Team) String() string {
 	members := func() string {
 		s := ""
-		for key, _ := range t.member {
+		for key, _ := range t.Member {
 			s += key + "\n"
 		}
 		return s
 	}
-	return "Team info: \nName: " + t.name + "\nMembers: \n" + members()
+	return "Team info: \nName: " + t.Name + "\nMembers: \n" + members()
 }
 
 func (t *Team) AddMember(member string, collection map[string]*User) {
-	t.member[member] = collection[member]
+	t.Member[member] = collection[member]
 	// Temporal.
 }
 
 func (t *Team) RemoveMember(member string) {
-	delete(t.member, member)
+	delete(t.Member, member)
 }

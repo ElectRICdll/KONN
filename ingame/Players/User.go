@@ -17,22 +17,23 @@ Including:
 	method String, setColor, setBelong, resInitialize
 */
 
+var currentUser *User
+
 type User struct {
-	name      string
-	color     string
+	Name      string
+	Color     string
 	resources int
 	belongsTo string
 }
 
 func NewUser(name string, color string) *User {
-	u := &User{name, color, 0, ""}
-	return u
+	return &User{name, color, 0, ""}
 }
 
 func Login() User {
 	var res []byte
 	var userData User
-	
+
 	userFile, err := os.Open("user.json")
 	if err != nil {
 		panic(nil) // TODO:
@@ -45,13 +46,17 @@ func Login() User {
 	return userData
 }
 
+func (u *User) getActor() string {
+	return u.String()
+}
+
 func (u *User) String() string {
-	return "User info: \n" + u.name + "\n" + u.belongsTo
+	return "User info: \n" + u.Name + "\n" + u.belongsTo
 	// TODO
 }
 
 func (u *User) setColor(c string) {
-	u.color = c
+	u.Color = c
 }
 
 func (u *User) setBelong(hisTeam string) {

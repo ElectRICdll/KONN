@@ -21,6 +21,7 @@ func (u *Man) initSub(userName string) {
 	u.Substance = Substance{
 		Health:    50,
 		Armor:     0,
+		Flexiblity: 1,
 		BelongsTo: userName,
 	}
 }
@@ -33,7 +34,7 @@ func (u *Man) Movement(cur *Node, next *Node) error {
 	var err error
 	if IsConnected(cur, next) {
 		err = nil
-		
+
 	} else {
 		err = errors.New("Invalid movement!")
 	}
@@ -56,6 +57,7 @@ func (u *RifleMan) initSub(userName string) {
 	u.Man.initSub(userName)
 	u.Health = 100
 	u.Armor = 0
+	u.Flexiblity = 1
 	u.Arming = Arming{
 		Damage: 5,
 	}
@@ -64,4 +66,3 @@ func (u *RifleMan) initSub(userName string) {
 func (u *RifleMan) Attack(oppo Substantive) {
 
 }
-

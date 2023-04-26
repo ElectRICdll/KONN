@@ -38,8 +38,6 @@ func (b *FrontierBase) produce() {
 	fmt.Println("Training...")
 }
 
-
-
 type InfantryBase struct {
 	Building
 
