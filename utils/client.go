@@ -4,30 +4,24 @@ import (
 	"fmt"
 	"io"
 	. "konn/constants"
-	"konn/tel"
-	"konn/tel/events"
 	"net"
 )
 
-func SendEvent(e *events.Event, conn net.Conn) {
-	eb := tel.EncodeEvent(e)
-	fmt.Println("Committing event.")
-	Commiter(eb, conn)
-}
+type GameServer net.Conn
+var toServer GameServer
 
 // TODO: client
-func Commiter(eb *tel.EventBag, conn net.Conn) {
-	_, err := conn.Write([]byte(eb.String()))
+func Commiter(str string) {
+	_, err := toServer.Write([]byte(str))
 	if err != nil {
 		fmt.Printf("Bag Sending failed: %v\n", err)
 	}
-	
 }
 
-func Receiver(conn net.Conn, out chan string) {
+func Receiver(out chan string) {
 	var buf [512]byte
 	for {
-		_, err := conn.Read(buf[:])
+		_, err := toServer.Read(buf[:])
 		if err == io.EOF {
 			// TODO: connection out handle
 		} else if err != nil {
@@ -38,12 +32,13 @@ func Receiver(conn net.Conn, out chan string) {
 	}
 }
 
-func ClientGenerate() net.Conn {
-	conn, err := net.Dial("tcp", Host+":20000")
+func ClientGenerate() *GameServer {
+	conn, err := net.Dial("tcp", Host+":20000") 
 	if err != nil {
 		LogGenerate(FATAL, fmt.Sprintf("Failed to connect to Server: %v", err))
 		return nil
 	}
 	// conn, err :+ net.Dial("tcp", "fmt.Sprintf("%s:%s", HOST, "20000")
-	return conn
+	toServer = conn
+	return &toServer
 }

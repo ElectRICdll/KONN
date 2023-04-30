@@ -6,6 +6,19 @@ import (
 	. "konn/tel/events"
 )
 
+const (
+	TO_ALL    = "all"
+	TO_MYTEAM = "myteam"
+	TO_SINGLE = "singleton"
+)
+
+type EventBag interface {
+	getEType() string
+	Registry()
+	Receive()
+	Send() string
+}
+
 type ServiceEvent interface {
 	Registry(*Players.Actor, ...int)
 	Receive(e *Event)
@@ -23,9 +36,3 @@ type ChatEvent interface {
 	Receive(e *Event)
 	String() string
 }
-
-const (
-	TO_ALL    = "all"
-	TO_MYTEAM = "myteam"
-	TO_SINGLE = "singleton"
-)

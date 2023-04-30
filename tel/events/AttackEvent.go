@@ -28,7 +28,7 @@ func (e *AttackEvent) Registry(curUser *Players.User, attacker basic.Substantive
 }
 
 func (e *AttackEvent) Receive(event *Event) {
-
+	
 }
 
 func (e *AttackEvent) String() string {
