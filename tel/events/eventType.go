@@ -1,9 +1,8 @@
-package tel
+package events
 
 import (
 	"konn/ingame/Players"
 	"konn/ingame/basic"
-	. "konn/tel/events"
 )
 
 const (

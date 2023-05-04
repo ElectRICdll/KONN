@@ -55,6 +55,25 @@ func EventSend(e Event) {
 	LogGenerate(DEBUG, "Committing event...")
 }
 
+func EventRecv(msg string) {
+	var (
+		e Event
+		module_Msg string
+		version_Msg string
+	)
+	fmt.Sscanf(msg, 
+		EVENTBAG + "%s" + "\n" +
+		THE_VERSION + "%s" + "\n" +
+		EVENTTYPE + "%s" + "\n" +
+		BODY + "%s" + BODYEND,
+		module_Msg, version_Msg, e.Name, e.Message,
+	)
+	switch e.Name {
+	case "NewUserEvent":
+		
+	}
+}
+
 func (e *Event) String() string {
 	return "EventName: " + e.Name + br + e.Message + br
 }
