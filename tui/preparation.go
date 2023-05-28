@@ -3,7 +3,6 @@ package tui
 import (
 	"fmt"
 	. "konn/constants"
-	"konn/ingame/Players"
 	"konn/utils"
 
 	ui "github.com/gizak/termui/v3"
@@ -12,21 +11,15 @@ import (
 
 // TODO: tui!!!
 
-type LocalData struct {
-	user map[string]*Players.User
-	team map[string]*Players.Team
-}
+
 
 func Initialize() {
 	fmt.Print("Initializing...")
 	defer fmt.Println("Done.")
-	bootBag := &LocalData{map[string]*Players.User{}, map[string]*Players.Team{}}
-	toServer := utils.ClientGenerate()
-	var RecvMessage chan string  
-	go utils.Receiver(toServer, RecvMessage)
-	// undetermined code
-	bootBag.user["electric"] = Players.NewUser("electric", "red")
-	//
+
+	var RecvMessage chan string 
+	utils.ClientGenerate()
+	go utils.Receiver(RecvMessage)
 }
 
 func Menu() {

@@ -1,8 +1,7 @@
-package buildings
+package entity
 
 import (
 	"fmt"
-	. "konn/ingame/basic"
 )
 
 type FrontierBase struct {

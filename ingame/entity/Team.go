@@ -1,4 +1,6 @@
-package Players
+package entity
+
+import "reflect"
 
 /*
 About a integration of Team
@@ -21,8 +23,16 @@ func NewTeam(teamName string) *Team {
 	return t
 }
 
-func (t *Team) getActor() string {
+func (t Team) getActor() string {
 	return t.String()
+}
+
+func (t Team) getActorName() string {
+	return t.Name
+}
+
+func (t Team) getActorType() string {
+	return reflect.TypeOf(t).String()
 }
 
 func (t *Team) String() string {

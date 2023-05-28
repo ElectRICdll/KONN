@@ -1,9 +1,10 @@
-package Players
+package entity
 
 import (
 	"bufio"
 	"encoding/json"
 	"os"
+	"reflect"
 )
 
 /*
@@ -46,8 +47,16 @@ func Login() User {
 	return userData
 }
 
-func (u *User) getActor() string {
+func (u User) getActor() string {
 	return u.String()
+}
+
+func (u User) getActorName() string {
+	return u.Name
+}
+
+func (u User) getActorType() string {
+	return reflect.TypeOf(u).String()
 }
 
 func (u *User) String() string {

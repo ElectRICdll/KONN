@@ -1,4 +1,4 @@
-package mapping
+package Map
 
 import (
 	"bufio"
@@ -11,22 +11,13 @@ const (
 	MAPVERIFY = "<MAPNAME>"
 )
 
-// type ComType interface {
-// 	decodeCom()
-// 	encodeCom()
-// }
-
-type Compaign struct {
-	name     string
-	plot     *[][]Node
-	plotSize int
+type Chessboard struct {
+	Mame string
+	Grid [][]*node
+	Size int
 }
 
-func TestCompaign() {
-
-} // test map
-
-func ReadCompaign(name string) {
+func ReadMap(name string) {
 	file, err := os.Open(name)
 	if err != nil {
 		LogGenerate(err.Error(), WARNING)
