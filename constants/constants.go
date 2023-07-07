@@ -20,7 +20,7 @@ const (
 	FATAL   = "[FATAL]"
 )
 
-var Host string = "106.53.70.120"
+var Host string = "xxx"
 var LogEvent chan string
 
 // Generate a log to your target string.
