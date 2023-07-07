@@ -1,0 +1,5 @@
+package ingame
+
+func MappingStart() {
+
+}
