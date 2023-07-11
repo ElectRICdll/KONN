@@ -1,18 +1,14 @@
-package compaign
-
-import (
-	"konn/entity/basic"
-)
+package basic
 
 type Terrain struct {
 	name       string
-	properties *basic.Properties
+	properties *Properties
 }
 
 func NewDesertTerrain() Terrain {
 	return Terrain{
 		name: "desert",
-		properties: &basic.Properties{
+		properties: &Properties{
 			Health:    0,
 			Damage:    0,
 			Armor:     0,
@@ -26,7 +22,7 @@ func NewDesertTerrain() Terrain {
 func NewForestTerrain() Terrain {
 	return Terrain{
 		name: "forest",
-		properties: &basic.Properties{
+		properties: &Properties{
 			Health:    0,
 			Damage:    0,
 			Armor:     0,
@@ -40,7 +36,7 @@ func NewForestTerrain() Terrain {
 func NewMoutainTerrain() Terrain {
 	return Terrain{
 		name: "moutain",
-		properties: &basic.Properties{
+		properties: &Properties{
 			Health:    0,
 			Damage:    0,
 			Armor:     0,
@@ -54,7 +50,7 @@ func NewMoutainTerrain() Terrain {
 func NewPlainTerrain() Terrain {
 	return Terrain{
 		name: "plain",
-		properties: &basic.Properties{
+		properties: &Properties{
 			Health:    0,
 			Damage:    0,
 			Armor:     0,
@@ -68,7 +64,7 @@ func NewPlainTerrain() Terrain {
 func NewCoastalTerrain() Terrain {
 	return Terrain{
 		name: "coastal",
-		properties: &basic.Properties{
+		properties: &Properties{
 			Health:    0,
 			Damage:    -40,
 			Armor:     0,

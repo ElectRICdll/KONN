@@ -5,18 +5,18 @@ import (
 )
 
 type CreateTeamEvent struct {
-	which *entity.User
+	which *entity.Player
 	to    entity.Team
 }
 
-func NewCreateTeamEvent(which *entity.User, to entity.Team) Event {
+func NewCreateTeamEvent(which *entity.Player, to entity.Team) Event {
 	return CreateTeamEvent{
 		which: which,
 		to:    to,
 	}
 }
 
-func (e CreateTeamEvent) toMessage() string {
+func (e CreateTeamEvent) ToMessage() string {
 	return e.String()
 }
 

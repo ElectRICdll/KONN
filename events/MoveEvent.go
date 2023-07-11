@@ -1,18 +1,18 @@
 package events
 
 import (
-	"konn/entity"
-	"konn/entity/compaign"
+	"konn/entity/basic"
+	"konn/entity/prop"
 )
 
 type MoveEvent struct {
 	Event
-	which *entity.User
-	from  *compaign.Position
-	to    *compaign.Position
+	which *prop.Substantive
+	from  *basic.Node
+	to    *basic.Node
 }
 
-func NewMoveEvent(which *entity.User, from *compaign.Position, to *compaign.Position) Event {
+func NewMoveEvent(which *prop.Substantive, from *basic.Node, to *basic.Node) Event {
 	return MoveEvent{
 		which: which,
 		from:  from,
@@ -20,7 +20,7 @@ func NewMoveEvent(which *entity.User, from *compaign.Position, to *compaign.Posi
 	}
 }
 
-func (e MoveEvent) toMessage() string {
+func (e MoveEvent) ToMessage() string {
 	return e.String()
 }
 

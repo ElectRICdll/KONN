@@ -1,21 +1,21 @@
 package api
 
 import (
-	"konn/entity/compaign"
+	"konn/entity/basic"
 )
 
-func GetMapList() []compaign.Chessboard {
-	return compaign.ReadMaps()
-}
+//func GetMapList() []basic.Chessboard {
+//	return gameplay.ReadMap()
+//}
 
 func InitMap() {
 
 }
 
-func AddMap(chessboard compaign.Chessboard) {
+func AddMap(chessboard basic.Chessboard) {
 
 }
 
-func RemoveMap(chessboard compaign.Chessboard) {
+func RemoveMap(chessboard basic.Chessboard) {
 
 }

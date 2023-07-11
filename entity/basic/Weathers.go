@@ -1,18 +1,14 @@
-package compaign
-
-import (
-	"konn/entity/basic"
-)
+package basic
 
 type Weather struct {
 	Name       string
-	Properties *basic.Properties
+	Properties *Properties
 }
 
 func NewCommonWeather() Weather {
 	return Weather{
 		Name: "common",
-		Properties: &basic.Properties{
+		Properties: &Properties{
 			Health:    0,
 			Damage:    0,
 			Armor:     0,
@@ -26,7 +22,7 @@ func NewCommonWeather() Weather {
 func NewRainyWeather() Weather {
 	return Weather{
 		Name: "rainy",
-		Properties: &basic.Properties{
+		Properties: &Properties{
 			Health:    0,
 			Damage:    0,
 			Armor:     0,
@@ -40,7 +36,7 @@ func NewRainyWeather() Weather {
 func NewSnowyWeather() Weather {
 	return Weather{
 		Name: "common",
-		Properties: &basic.Properties{
+		Properties: &Properties{
 			Health:    0,
 			Damage:    10,
 			Armor:     0,

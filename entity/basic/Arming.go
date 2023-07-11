@@ -1,13 +1,19 @@
 package basic
 
+import (
+	"konn/entity/prop"
+	"konn/events"
+)
+
 type Arming struct {
-	name      string
-	damage    int
-	antiArmor int
+	Name      string
+	Damage    int
+	AntiArmor int
+	Accuracy  int
 }
 
-func (a *Arming) Attack() {
-	//events.Register(events.NewAttackEvent())
+func (a *Arming) Attack(target *prop.Substantive) {
+	events.Register(events.NewAttackEvent(a, target))
 }
 
 func (a *Arming) Disable() {
@@ -16,20 +22,4 @@ func (a *Arming) Disable() {
 
 func (a *Arming) Launch() {
 
-}
-
-func (a *Arming) Cancel() {
-
-}
-
-func (a *Arming) Name() string {
-	return a.name
-}
-
-func (a *Arming) Damage() int {
-	return a.damage
-}
-
-func (a *Arming) AntiArmor() int {
-	return a.antiArmor
 }

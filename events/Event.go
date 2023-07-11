@@ -38,7 +38,7 @@ const (
 var EventQueue chan Event
 
 type Event interface {
-	toMessage() string
+	ToMessage() string
 }
 
 func Register(event Event) {

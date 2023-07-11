@@ -5,15 +5,17 @@ import (
 	"konn/entity/prop"
 )
 
-type AttackEvent struct {
+type DamageEvent struct {
 	from *basic.Arming
 	to   *prop.Substantive
+	res  int
 }
 
-func NewAttackEvent(attacker *basic.Arming, target *prop.Substantive) Event {
-	return AttackEvent{
+func NewDamageEvent(attacker *basic.Arming, target *prop.Substantive, damage int) Event {
+	return DamageEvent{
 		from: attacker,
 		to:   target,
+		res:  0,
 	}
 }
 
@@ -29,10 +31,10 @@ func NewAttackEvent(attacker *basic.Arming, target *prop.Substantive) Event {
 //	}
 //}
 
-func (e AttackEvent) ToMessage() string {
+func (e DamageEvent) ToMessage() string {
 	return e.String()
 }
 
-func (e AttackEvent) String() string {
+func (e DamageEvent) String() string {
 	return BEGIN + br + "EventName: "
 }

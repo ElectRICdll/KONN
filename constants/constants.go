@@ -18,6 +18,8 @@ const (
 	WARNING = "[WARNING]"
 	ERROR   = "[ERROR]"
 	FATAL   = "[FATAL]"
+
+	BLOCK_SIZE = 9
 )
 
 var Host string = "xxx"

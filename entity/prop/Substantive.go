@@ -1,9 +1,13 @@
 package prop
 
+import (
+	"konn/entity"
+	"konn/entity/basic"
+)
+
 type Substantive interface {
 	InitSub()
-	ID() int
-	// Name()
+	ID() basic.ItemID
 	Vanished()
-	BelongsTo() string
+	Belong() entity.Player
 }

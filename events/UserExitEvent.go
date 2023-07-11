@@ -14,7 +14,7 @@ func (e UserLogoutEvent) Registry(which *entity.User) Event {
 	}
 }
 
-func (e UserLogoutEvent) toMessage() string {
+func (e UserLogoutEvent) ToMessage() string {
 	return e.String()
 }
 

@@ -1,6 +1,6 @@
 package entity
 
-import "reflect"
+import "strconv"
 
 /*
 About a integration of Team
@@ -13,44 +13,35 @@ Including:
 */
 
 type Team struct {
-	Name   string
-	Member map[string]*User
+	id     int
+	name   string
+	member map[string]Player
 }
 
 // TODO: map initialization
-func NewTeam(teamName string) *Team {
-	t := &Team{teamName, nil}
-	return t
-}
-
-func (t Team) getActor() string {
-	return t.String()
-}
-
-func (t Team) getActorName() string {
-	return t.Name
-}
-
-func (t Team) getActorType() string {
-	return reflect.TypeOf(t).String()
+func NewTeam(name string) *Team {
+	return &Team{
+		name:   name,
+		member: make(map[string]Player),
+	}
 }
 
 func (t *Team) String() string {
 	members := func() string {
 		s := ""
-		for key, _ := range t.Member {
+		for key, _ := range t.member {
 			s += key + "\n"
 		}
 		return s
 	}
-	return "Team info: \nName: " + t.Name + "\nMembers: \n" + members()
+	return "Team info: \nID: " + strconv.Itoa(t.id) + "\nName: " + t.name + "\nMembers: \n" + members()
 }
 
-func (t *Team) AddMember(member string, collection map[string]*User) {
-	t.Member[member] = collection[member]
-	// Temporal.
-}
+//func (t *Team) AddMember(member string, collection map[string]Player) {
+//	t.member[member] = collection[member]
+//	// Temporal.
+//}
 
 func (t *Team) RemoveMember(member string) {
-	delete(t.Member, member)
+	delete(t.member, member)
 }

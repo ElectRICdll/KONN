@@ -5,12 +5,12 @@ import (
 )
 
 type ColorChangeEvent struct {
-	to    *entity.User
+	to    *entity.Player
 	after int
 	isMe  bool
 }
 
-func NewColorChangeEvent(to *entity.User, after int) Event {
+func NewColorChangeEvent(to *entity.Player, after int) Event {
 	return ColorChangeEvent{
 		to:    to,
 		after: after,
@@ -18,7 +18,7 @@ func NewColorChangeEvent(to *entity.User, after int) Event {
 	}
 }
 
-func (e ColorChangeEvent) toMessage() string {
+func (e ColorChangeEvent) ToMessage() string {
 	return e.String()
 }
 

@@ -15,9 +15,10 @@ type Properties struct {
 	AntiArmor int
 	Scout     int
 	AntiScout int
+	Flex      int
 }
 
-func (p *Properties) String() string {
+func (p Properties) String() string {
 	var result string
 	typeof := reflect.TypeOf(p)
 	valueof := reflect.ValueOf(p)

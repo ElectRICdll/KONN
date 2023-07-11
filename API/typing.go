@@ -1,10 +1,10 @@
 package api
 
 import (
-	"konn/entity/compaign"
+	"konn/entity/basic"
 )
 
 type (
-	Chessboard = compaign.Chessboard
-	Grid       = compaign.Node
+	Chessboard = basic.Chessboard
+	Grid       = basic.Node
 )

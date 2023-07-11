@@ -12,7 +12,7 @@ func NewExposeEvent(which prop.Substantive) Event {
 	}
 }
 
-func (e ExposeEvent) toMessage() string {
+func (e ExposeEvent) ToMessage() string {
 	return e.String()
 }
 

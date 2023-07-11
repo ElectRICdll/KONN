@@ -5,16 +5,16 @@ import (
 )
 
 type UserCreateEvent struct {
-	to entity.User
+	to entity.Player
 }
 
-func NewUserCreateEvent(to entity.User) Event {
+func NewUserCreateEvent(to entity.Player) Event {
 	return UserCreateEvent{
 		to: to,
 	}
 }
 
-func (e UserCreateEvent) toMessage() string {
+func (e UserCreateEvent) ToMessage() string {
 	return e.String()
 }
 

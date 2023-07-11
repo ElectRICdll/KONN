@@ -14,7 +14,7 @@ func NewUserLoginEvent(which entity.User) Event {
 	}
 }
 
-func (e UserLoginEvent) toMessage() string {
+func (e UserLoginEvent) ToMessage() string {
 	return e.String()
 }
 

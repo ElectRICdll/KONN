@@ -8,13 +8,13 @@ type DiseaseEvent struct {
 	target prop.Substantive
 }
 
-func (e DiseaseEvent) NewDiseaseEvent(target prop.Substantive) Event {
+func NewDiseaseEvent(target prop.Substantive) Event {
 	return DiseaseEvent{
 		target: target,
 	}
 }
 
-func (e DiseaseEvent) toMessage() string {
+func (e DiseaseEvent) ToMessage() string {
 	return e.String()
 }
 
