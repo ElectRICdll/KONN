@@ -3,11 +3,12 @@ package utils
 import (
 	"fmt"
 	"io"
-	. "konn/constants"
+	"konn/constants"
 	"net"
 )
 
 type GameServer net.Conn
+
 var toServer GameServer
 
 // TODO: client
@@ -25,17 +26,17 @@ func Receiver(out chan string) {
 		if err == io.EOF {
 			// TODO: connection out handle
 		} else if err != nil {
-			LogGenerate(ERROR, "Failed to receive message from server...")
+			constants.LogGenerate(ERROR, "Failed to receive message from server...")
 		}
 		out <- string(buf[:len(buf)-1])
-		LogGenerate(DEBUG, "Message received.")
+		constants.LogGenerate(DEBUG, "Message received.")
 	}
 }
 
 func ClientGenerate() *GameServer {
-	conn, err := net.Dial("tcp", Host+":20000") 
+	conn, err := net.Dial("tcp", constants.Host+":20000")
 	if err != nil {
-		LogGenerate(FATAL, fmt.Sprintf("Failed to connect to Server: %v", err))
+		constants.LogGenerate(FATAL, fmt.Sprintf("Failed to connect to Server: %v", err))
 		return nil
 	}
 	// conn, err :+ net.Dial("tcp", "fmt.Sprintf("%s:%s", HOST, "20000")

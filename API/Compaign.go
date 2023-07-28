@@ -2,20 +2,17 @@ package api
 
 import (
 	"konn/entity/basic"
+	"konn/entity/prop"
 )
 
-//func GetMapList() []basic.Chessboard {
-//	return gameplay.ReadMap()
-//}
-
-func InitMap() {
+func BuildStructure(builder basic.Builder, pos basic.Node) {
 
 }
 
-func AddMap(chessboard basic.Chessboard) {
+func RemoveStructure(structure prop.Structure) {
 
 }
 
-func RemoveMap(chessboard basic.Chessboard) {
+func Train(producer basic.Producer) {
 
 }

@@ -10,4 +10,5 @@ type Substantive interface {
 	ID() basic.ItemID
 	Vanished()
 	Belong() entity.Player
+	Props() basic.Properties
 }

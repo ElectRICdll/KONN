@@ -2,14 +2,15 @@ package gameplay
 
 import (
 	"konn/entity/basic"
+	"konn/entity/prop"
 	"konn/utils"
 )
 
-func hitJudge(attacker basic.Arming, suffer basic.Substance) bool {
+func HitJudge(attacker basic.Arming, suffer prop.Substantive) bool {
 	return utils.GodsJudge(attacker.Accuracy - suffer.Props().Flex)
 }
 
-func damageHandler(attacker basic.Arming, suffer basic.Substance) int {
+func DamageHandler(attacker basic.Arming, suffer prop.Substantive) int {
 	// TODO: Damage calculate
 	return 0
 }

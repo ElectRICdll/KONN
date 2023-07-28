@@ -1,12 +1,14 @@
 package basic
 
-import "konn/entity"
+import (
+	"fmt"
+	"konn/entity"
+)
 
 type (
 	Player entity.Player
 
-	SubstanceID int
-	ItemID      int
+	SubstanceID string
 )
 
 /*
@@ -16,16 +18,20 @@ Almost every object will be Substance in a match.
 At the mean time, Substance implemented prop.Substantive by default.
 */
 type Substance struct {
-	id     ItemID
+	id     string
+	size   int
 	props  Properties
 	belong Player
 }
 
+// TODO: id generate
 func (s *Substance) InitSub() {
 	s = &Substance{
+		id: fmt.Sprintf("%s", &s),
 		props: Properties{
 			Health: 1,
 		},
+		size: 1,
 	}
 }
 
@@ -33,7 +39,7 @@ func (s *Substance) Vanished() {
 
 }
 
-func (s *Substance) ID() ItemID {
+func (s *Substance) ID() string {
 	return s.id
 }
 

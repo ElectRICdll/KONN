@@ -5,15 +5,24 @@ import (
 	"io"
 	"konn/constants"
 	"konn/entity/basic"
+	"math"
 	"os"
+)
+
+const (
+	MAPPATH = ""
 )
 
 func MappingStart() {
 
 }
 
-func SearchMap() []basic.Chessboard {
-
+func GetMapList() []basic.Chessboard {
+	//mapFile, err = os.Open(MAPPATH)
+	//if err != nil {
+	//constants.LogGenerate()
+	//}
+	return nil
 }
 
 func ReadMap(name string) basic.Chessboard {
@@ -36,5 +45,8 @@ func ReadMap(name string) basic.Chessboard {
 }
 
 func IsConnected(n1 *basic.Node, n2 *basic.Node) bool {
+	if math.Abs(float64(n1.PosY()-n2.PosY())) <= 1 || math.Abs(float64(n1.PosY()-n2.PosY())) <= 1 {
+		return true
+	}
 	return false
 }

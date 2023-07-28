@@ -7,7 +7,23 @@ const (
 type Chessboard struct {
 	name  string
 	grids [][]*Node
-	size  int
+	ysize int
+	xsize int
+}
+
+func NewChessBoard(name string, ysize int, xsize int) Chessboard {
+	return Chessboard{
+		name: name,
+		grids: func(y int, x int) [][]*Node {
+			grids := make([][]*Node, ysize)
+			for i := 0; i < ysize; i++ {
+				grids[i] = make([]*Node, xsize)
+			}
+			return grids
+		}(ysize, xsize),
+		ysize: ysize,
+		xsize: xsize,
+	}
 }
 
 func (ch *Chessboard) Name() string {
@@ -18,6 +34,10 @@ func (ch *Chessboard) Grids() [][]*Node {
 	return ch.grids
 }
 
-func (ch *Chessboard) Size() int {
-	return ch.size
+func (ch *Chessboard) SizeY() int {
+	return ch.ysize
+}
+
+func (ch *Chessboard) SizeX() int {
+	return ch.xsize
 }

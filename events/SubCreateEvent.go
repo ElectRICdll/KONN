@@ -1,19 +1,18 @@
 package events
 
 import (
-	"konn/entity"
 	"konn/entity/basic"
 )
 
 type SubCreateEvent struct {
-	from *entity.Player
+	from *basic.Builder
 	to   basic.SubstanceID
 }
 
-func NewSubCreateEvent(from *entity.Player, to int) Event {
+func NewSubCreateEvent(from *basic.Builder, to basic.SubstanceID) Event {
 	return SubCreateEvent{
 		from: from,
-		to:   (basic.SubstanceID)(to),
+		to:   to,
 	}
 }
 

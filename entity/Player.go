@@ -1,5 +1,7 @@
 package entity
 
+var Self Player
+
 type Player struct {
 	name   string
 	id     int
