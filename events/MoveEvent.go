@@ -7,12 +7,12 @@ import (
 
 type MoveEvent struct {
 	Event
-	which *prop.Substantive
+	which prop.Moveable
 	from  *basic.Node
 	to    *basic.Node
 }
 
-func NewMoveEvent(which *prop.Substantive, from *basic.Node, to *basic.Node) Event {
+func NewMoveEvent(which prop.Moveable, from *basic.Node, to *basic.Node) Event {
 	return MoveEvent{
 		which: which,
 		from:  from,

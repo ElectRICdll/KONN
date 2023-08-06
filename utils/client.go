@@ -26,17 +26,17 @@ func Receiver(out chan string) {
 		if err == io.EOF {
 			// TODO: connection out handle
 		} else if err != nil {
-			constants.LogGenerate(ERROR, "Failed to receive message from server...")
+			Logger.Error("Failed to receive message from server...")
 		}
 		out <- string(buf[:len(buf)-1])
-		constants.LogGenerate(DEBUG, "Message received.")
+		Logger.Debug("Message received.")
 	}
 }
 
 func ClientGenerate() *GameServer {
 	conn, err := net.Dial("tcp", constants.Host+":20000")
 	if err != nil {
-		constants.LogGenerate(FATAL, fmt.Sprintf("Failed to connect to Server: %v", err))
+		Logger.Fatal(fmt.Sprintf("Failed to connect to Server: %v", err))
 		return nil
 	}
 	// conn, err :+ net.Dial("tcp", "fmt.Sprintf("%s:%s", HOST, "20000")

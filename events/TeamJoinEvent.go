@@ -1,15 +1,15 @@
 package events
 
 import (
-	"konn/entity"
+	"konn/entity/basic"
 )
 
 type TeamJoinEvent struct {
-	which *entity.Player
-	to    *entity.Team
+	which *basic.Player
+	to    *basic.Team
 }
 
-func (e TeamJoinEvent) NewJoinTeamEvent(which *entity.Player, to *entity.Team) Event {
+func (e TeamJoinEvent) NewJoinTeamEvent(which *basic.Player, to *basic.Team) Event {
 	return TeamJoinEvent{
 		which: which,
 		to:    to,

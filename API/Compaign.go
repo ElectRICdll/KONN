@@ -1,18 +1,25 @@
 package api
 
-import (
-	"konn/entity/basic"
-	"konn/entity/prop"
-)
-
-func BuildStructure(builder basic.Builder, pos basic.Node) {
+func Start() {
 
 }
 
-func RemoveStructure(structure prop.Structure) {
+func AddPlayer() {
 
 }
 
-func Train(producer basic.Producer) {
+func RemovePlayer() {
+
+}
+
+func BuildStructure(builder string, pos string) {
+
+}
+
+func RemoveStructure(structure string) {
+
+}
+
+func Train(producer string) {
 
 }

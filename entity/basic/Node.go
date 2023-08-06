@@ -1,10 +1,13 @@
 package basic
 
+import "konn/utils"
+
 const BLOCK_SIZE = 9
 
 type Node struct {
 	id         int
-	contains   []Substance
+	contains   []*Substance
+	remaining  int
 	curTerrain Terrain
 	curWeather Weather
 	position   struct {
@@ -20,16 +23,12 @@ func NewNode(curTerrain Terrain) Node {
 	}
 }
 
-func (n *Node) ShowContains() []Substance {
-	return n.contains
-}
-
-func (n *Node) Enter(sub *Substance) {
-
-}
-
-func (n *Node) Exit(sub *Substance) {
-
+func (n *Node) ShowContains() []string {
+	var result []string
+	for _, element := range n.contains {
+		result = append(result, element.Name())
+	}
+	return result
 }
 
 func (n *Node) Terrain() Terrain {
@@ -54,4 +53,13 @@ func (n *Node) PosY() int {
 
 func (n *Node) PosX() int {
 	return n.position.X
+}
+
+func (n *Node) Enter(sub *Substance) {
+	if n.remaining < sub.size {
+		utils.Logger.Info("No more space to enter.")
+	} else {
+		n.contains = append(n.contains, sub)
+		n.remaining -= sub.size
+	}
 }

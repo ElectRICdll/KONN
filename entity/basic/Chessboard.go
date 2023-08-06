@@ -1,5 +1,7 @@
 package basic
 
+import "fmt"
+
 const (
 	MAPVERIFY = "<MAPNAME>"
 )
@@ -40,4 +42,8 @@ func (ch *Chessboard) SizeY() int {
 
 func (ch *Chessboard) SizeX() int {
 	return ch.xsize
+}
+
+func (ch *Chessboard) String() string {
+	return fmt.Sprintf("KONN map: %s\n")
 }

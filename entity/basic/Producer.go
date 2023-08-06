@@ -1,19 +1,27 @@
 package basic
 
 import (
-	"konn/entity/prop"
 	"konn/utils"
 )
 
 type Producer struct {
-	list  map[string]*prop.Unit
+	IsDisable bool
+	Belong    *Substance
+
+	list  []Slot
 	queue utils.Queue
 }
 
-func (p *Producer) Produce(name string) {
-	p.queue.Push(p.list[name])
+func (p *Producer) Produce(index int) {
+	utils.Logger.Info("Working on production...")
+	defer utils.Logger.Info("Production completed.")
+	p.queue.Push(p.list[index].work)
 }
 
-func (p *Producer) List() map[string]*prop.Unit {
-	return p.list
+func (p *Producer) ShowList() []string {
+	var result []string
+	for _, value := range p.list {
+		result = append(result, value.Name())
+	}
+	return result
 }

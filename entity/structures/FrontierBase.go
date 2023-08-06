@@ -1,7 +1,6 @@
 package entity
 
 import (
-	"fmt"
 	"konn/entity/basic"
 	"konn/entity/prop"
 )
@@ -9,31 +8,41 @@ import (
 type FrontierBase struct {
 	prop.Structure
 	basic.Substance
-	engineer basic.Builder
-	train    basic.Producer
+	defence        basic.Arming
+	engineer       basic.Constructor
+	trainingCourse basic.Producer
 }
 
-func (b *FrontierBase) initSub(userName string) {
+// TODO
+func NewFrontierBase(belong *basic.Player) *FrontierBase {
+	return &FrontierBase{
+		defence: basic.Arming{
+			Name:      "",
+			Damage:    20,
+			AntiArmor: 10,
+			Accuracy:  85,
+			IsDisable: true,
+		},
+		engineer: basic.Constructor{
+			IsDisable: true,
+		},
+		trainingCourse: basic.Producer{
+			IsDisable: true,
+		},
+	}
+}
 
+func (b *FrontierBase) InitSub(userName string) {
+	b.SetProps(basic.Properties{
+		Health:    400,
+		Armor:     50,
+		Scout:     40,
+		AntiScout: 0,
+		Flex:      0,
+	})
 }
 
 func (b *FrontierBase) Vanished() {
-
-}
-
-// TODO: more fix
-func (b *FrontierBase) Construct(obj basic.Substance) {
-	fmt.Println("Constructing, it will take times...\n")
-	defer fmt.Println("Construction completed.")
-	// if _, ok := obj.(Unit); ok {
-	// 	obj, _ = NewUnit("nil") // error handler needed.
-	// } else if _, ok := obj.(Building); ok {
-	// 	obj, _ = NewBuilding("nil") // error handler needed.
-	// } else {
-	// 	// error generater needed.
-	// }
-}
-
-func (b *FrontierBase) produce() {
-	fmt.Println("Training...")
+	b.engineer.IsDisable = true
+	b.trainingCourse.IsDisable = true
 }

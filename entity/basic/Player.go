@@ -1,10 +1,15 @@
-package entity
+package basic
 
-var Self Player
+var World Player = Player{
+	id:     "world",
+	name:   "world",
+	color:  0,
+	belong: nil,
+}
 
 type Player struct {
+	id     string
 	name   string
-	id     int
 	color  int
 	belong *Team
 }
@@ -13,7 +18,7 @@ func (p *Player) Name() string {
 	return p.name
 }
 
-func (p *Player) ID() int {
+func (p *Player) ID() string {
 	return p.id
 }
 

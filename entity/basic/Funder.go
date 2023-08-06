@@ -2,12 +2,13 @@ package basic
 
 type Funder struct {
 	PerSecond int
+	IsWorking bool
 }
 
 func (f *Funder) Start() {
-	// TODO
+	f.IsWorking = true
 }
 
 func (f *Funder) Halt() {
-	// TODO
+	f.IsWorking = false
 }

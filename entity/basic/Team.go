@@ -1,6 +1,8 @@
-package entity
+package basic
 
-import "strconv"
+import (
+	"strconv"
+)
 
 /*
 About a integration of Team
@@ -15,14 +17,14 @@ Including:
 type Team struct {
 	id     int
 	name   string
-	member map[string]Player
+	member map[string]*Player
 }
 
-// TODO: map initialization
+// TODO: id generate
 func NewTeam(name string) *Team {
 	return &Team{
 		name:   name,
-		member: make(map[string]Player),
+		member: make(map[string]*Player),
 	}
 }
 
@@ -37,10 +39,11 @@ func (t *Team) String() string {
 	return "Team info: \nID: " + strconv.Itoa(t.id) + "\nName: " + t.name + "\nMembers: \n" + members()
 }
 
-//func (t *Team) AddMember(member string, collection map[string]Player) {
-//	t.member[member] = collection[member]
-//	// Temporal.
-//}
+func (t *Team) AddMember(member string, players ...*Player) {
+	for _, element := range players {
+		t.member[element.name] = element
+	}
+}
 
 func (t *Team) RemoveMember(member string) {
 	delete(t.member, member)

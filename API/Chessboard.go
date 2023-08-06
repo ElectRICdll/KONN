@@ -1,15 +1,19 @@
 package api
 
 import (
-	"konn/entity"
 	"konn/entity/basic"
+	"konn/gameplay"
 )
 
-//func GetMapList() []basic.Chessboard {
-//	return gameplay.ReadMap()
-//}
+func GetMapList() []string {
+	res := make([]string, 0)
+	for _, value := range gameplay.GetMapList() {
+		res = append(res, value.String())
+	}
+	return res
+}
 
-func InitMap() {
+func InitMap() string {
 
 }
 
@@ -18,9 +22,5 @@ func AddMap(chessboard basic.Chessboard) {
 }
 
 func RemoveMap(chessboard basic.Chessboard) {
-
-}
-
-func Start(chessboard basic.Chessboard, rule basic.Rule, players []entity.Player) {
 
 }

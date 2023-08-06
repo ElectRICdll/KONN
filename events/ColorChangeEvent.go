@@ -1,16 +1,16 @@
 package events
 
 import (
-	"konn/entity"
+	"konn/entity/basic"
 )
 
 type ColorChangeEvent struct {
-	to    *entity.Player
+	to    *basic.Player
 	after int
 	isMe  bool
 }
 
-func NewColorChangeEvent(to *entity.Player, after int) Event {
+func NewColorChangeEvent(to *basic.Player, after int) Event {
 	return ColorChangeEvent{
 		to:    to,
 		after: after,

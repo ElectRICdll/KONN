@@ -1,14 +1,14 @@
 package events
 
 import (
-	"konn/entity"
+	"konn/entity/basic"
 )
 
 type UserCreateEvent struct {
-	to entity.Player
+	to basic.Player
 }
 
-func NewUserCreateEvent(to entity.Player) Event {
+func NewUserCreateEvent(to basic.Player) Event {
 	return UserCreateEvent{
 		to: to,
 	}

@@ -10,9 +10,7 @@ The Properties Class provides a standard of entities' basical properties.
 */
 type Properties struct {
 	Health    int
-	Damage    int
 	Armor     int
-	AntiArmor int
 	Scout     int
 	AntiScout int
 	Flex      int

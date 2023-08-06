@@ -3,6 +3,7 @@ package bio
 import (
 	"konn/entity/basic"
 	"konn/entity/prop"
+	"konn/utils"
 )
 
 type Man struct {
@@ -18,6 +19,10 @@ func (m *Man) InitSub() {
 	m.isAlive = true
 }
 
-func (m *Man) Movement() {
+func (m *Man) MovementStart() {
+	utils.Logger.Info("Moving.")
+}
+
+func (m *Man) MovementEnd() {
 
 }

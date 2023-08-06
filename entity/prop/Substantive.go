@@ -1,14 +1,13 @@
 package prop
 
 import (
-	"konn/entity"
 	"konn/entity/basic"
 )
 
 type Substantive interface {
-	InitSub()
-	ID() basic.ItemID
+	InitSub(belong *basic.Player)
+	ID() string
 	Vanished()
-	Belong() entity.Player
+	Belong() basic.Player
 	Props() basic.Properties
 }

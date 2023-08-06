@@ -8,7 +8,7 @@ func Register(username string, password string) {
 
 }
 
-func RemovePlayer(userid string) {
+func RemoveMember(userid string) {
 
 }
 
